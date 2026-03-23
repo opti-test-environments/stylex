@@ -14,7 +14,7 @@ const utils = require('./flow-module-utils');
 const yargs = require('yargs/yargs');
 
 async function generateTypes(inputDir, outputDir, rootDir) {
-  const rootPath = rootDir ?? path.resolve(inputDir, '../');
+  const rootPath = rootDir ? path.resolve(inputDir, '../') : null;
   const flowModules = await utils.findFlowModules(inputDir, rootPath);
 
   await fsPromises.mkdir(outputDir, { recursive: true });
@@ -22,7 +22,7 @@ async function generateTypes(inputDir, outputDir, rootDir) {
 
   const jsFlowFiles = dirents
     .filter((dirent) => dirent.name.endsWith('.js.flow'))
-    .map((dirent) => dirent.name.replace(/\.js\.flow$/, '.js'));
+    .map((dirent) => dirent.name.replace(/\.js\.flow$/, '.js')).sort();
 
   const dTsFiles = dirents
     .filter((dirent) => dirent.name.endsWith('.d.ts'))
