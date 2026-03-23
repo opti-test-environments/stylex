@@ -22,7 +22,7 @@ async function generateTypes(inputDir, outputDir, rootDir) {
 
   const jsFlowFiles = dirents
     .filter((dirent) => dirent.name.endsWith('.js.flow'))
-    .map((dirent) => dirent.name.replace(/\.js\.flow$/, '.js'));
+    .map((dirent) => dirent.name.replace(/\.js\.flow$/, '.js')).sort();
 
   const dTsFiles = dirents
     .filter((dirent) => dirent.name.endsWith('.d.ts'))
